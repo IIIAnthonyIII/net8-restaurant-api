@@ -16,3 +16,6 @@ tests/Restaurants.Application.Tests/bin
 tests/Restaurants.Application.Tests/obj
 tests/Restaurants.Infrastucture.Tests/bin
 tests/Restaurants.Infrastucture.Tests/obj
+
+# Logs
+src/Restaurants.API/Logs

@@ -1,26 +1,36 @@
 name: restaurant-api-ci
 
 on:
+  push:
+    branches: 
+      - develop
   pull_request:
     branches:
-    - main
+      - main
+      - develop
+  workflow_call:
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
+
       # Version de .net
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v5.0.1
         with:
           dotnet-version: 8.0.x
+
       # Dependencias
       - name: Restore dependencies
         run: dotnet restore
+
       - name: Build
         run: dotnet build --no-restore
+
       - name: Test
         run: dotnet test

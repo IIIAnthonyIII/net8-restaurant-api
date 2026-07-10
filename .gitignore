@@ -1,1 +1,21 @@
+# Visual Studio
 .vs
+
+# Build
+src/Restaurants.API/bin
+src/Restaurants.API/obj
+src/Restaurants.Application/bin
+src/Restaurants.Application/obj
+src/Restaurants.Domain/bin
+src/Restaurants.Domain/obj
+src/Restaurants.Infrastucture/bin
+src/Restaurants.Infrastucture/obj
+tests/Restaurants.API.Tests/bin
+tests/Restaurants.API.Tests/obj
+tests/Restaurants.Application.Tests/bin
+tests/Restaurants.Application.Tests/obj
+tests/Restaurants.Infrastucture.Tests/bin
+tests/Restaurants.Infrastucture.Tests/obj
+
+# Logs
+src/Restaurants.API/Logs

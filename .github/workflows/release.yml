@@ -1,0 +1,67 @@
+name: restaurant-api-cd
+
+on:
+  push:
+    branches:
+    - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+      # Version de .net
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v5.0.1
+        with:
+          dotnet-version: 8.0.x
+      # Dependencias
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore -c Release
+      - name: Publish
+        run: dotnet publish ./src/Restaurants.API/Restaurants.API.csproj --no-build -o ${{env.DOTNET_ROOT}}/api
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: api-artifact
+          path: ${{env.DOTNET_ROOT}}/api
+  # Test para development
+  deploy-dev:
+    environment:
+      name: 'Dev'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v7.0.0
+        with:
+          name: api-artifact
+      - name: Azure WebApp
+        uses: Azure/webapps-deploy@v2.2.17
+        id: deploy-to-webapp
+        with:
+          app-name: 'restaurantapidev' #Colocar el nombre del web app de Azure
+          publish-profile: ${{secrets.PUBLISH_PROFILE_DEV}} #Colocar el contenido del archivo de Azure
+  # Si se completo deploy-dev pasa a Production
+  deploy-prod:
+    environment:
+      name: 'Prod'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    runs-on: ubuntu-latest
+    needs: deploy-dev
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v7.0.0
+        with:
+          name: api-artifact
+      - name: Azure WebApp
+        uses: Azure/webapps-deploy@v2.2.17
+        id: deploy-to-webapp
+        with:
+          app-name: 'restaurantapiprod' #Colocar el nombre del web app de Azure
+          publish-profile: ${{secrets.PUBLISH_PROFILE_PROD}} #Colocar el contenido del archivo de Azure

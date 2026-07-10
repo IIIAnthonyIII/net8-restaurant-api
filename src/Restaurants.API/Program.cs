@@ -1,4 +1,3 @@
-using Microsoft.OpenApi.Models;
 using Restaurants.API.Extensions;
 using Restaurants.API.Middlewares;
 using Restaurants.Application.Extensions;

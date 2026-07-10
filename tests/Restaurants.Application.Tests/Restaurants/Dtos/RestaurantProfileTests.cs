@@ -1,5 +1,6 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentAssertions;
+using Microsoft.Extensions.Logging.Abstractions;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
 using Restaurants.Application.Restaurants.Dtos;
@@ -13,10 +14,7 @@ public class RestaurantProfileTests
     private IMapper _mapper;
     public RestaurantProfileTests()
     {
-        var configuration = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<RestaurantProfile>();
-        });
+        var configuration = new MapperConfiguration(cfg => cfg.AddProfile(new RestaurantProfile()), NullLoggerFactory.Instance);
         _mapper = configuration.CreateMapper();
     }
 

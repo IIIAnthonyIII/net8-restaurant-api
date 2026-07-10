@@ -8,7 +8,6 @@ using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
 using Restaurants.Infrastucture.Seeders;
-
 using System.Net.Http.Json;
 using Xunit;
 

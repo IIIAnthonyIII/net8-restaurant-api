@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Restaurants.API.Middlewares;
 using Serilog;
 
@@ -19,18 +19,9 @@ public static class WebApplicationBuilderExtensions
                 Type = SecuritySchemeType.Http,
                 Scheme = "Bearer"
             });
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            c.AddSecurityRequirement((document) => new OpenApiSecurityRequirement()
             {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "bearerAuth"
-                        }
-                    }, []
-                }
+                [new OpenApiSecuritySchemeReference("bearerAuth", document)] = []
             });
         });
         builder.Services.AddScoped<ErrorHandlingMiddleware>();

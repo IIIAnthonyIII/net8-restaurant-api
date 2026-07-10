@@ -1,5 +1,0 @@
-C:\Users\UserNew\Documents\Test\Restaurant.Infrastucture\obj\Debug\net8.0\Restaurant.Infrastucture.csproj.AssemblyReference.cache
-C:\Users\UserNew\Documents\Test\Restaurant.Infrastucture\obj\Debug\net8.0\Restaurant.Infrastucture.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\UserNew\Documents\Test\Restaurant.Infrastucture\obj\Debug\net8.0\Restaurant.Infrastucture.AssemblyInfoInputs.cache
-C:\Users\UserNew\Documents\Test\Restaurant.Infrastucture\obj\Debug\net8.0\Restaurant.Infrastucture.AssemblyInfo.cs
-C:\Users\UserNew\Documents\Test\Restaurant.Infrastucture\obj\Debug\net8.0\Restaurant.Infrastucture.csproj.CoreCompileInputs.cache

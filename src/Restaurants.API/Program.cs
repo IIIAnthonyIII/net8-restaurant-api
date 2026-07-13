@@ -36,8 +36,8 @@ try
     }
     app.UseHttpsRedirection();
     app.MapGroup("api/identity")
-        .WithTags("Identity")   //Unir otra clase a las api de swagger
-        .MapIdentityApi<User>();
+       .WithTags("Identity")   //Unir otra clase a las api de swagger
+       .MapIdentityApi<User>();
     app.UseAuthorization();
     app.MapControllers();
     app.Run();
